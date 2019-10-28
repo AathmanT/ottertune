@@ -1,0 +1,46 @@
+Requirement already satisfied: Django==1.10.1 in /home/aathmsn/anaconda3/lib/python3.6/site-packages (1.10.1)
+Collecting django-celery==3.2.1
+  Using cached https://files.pythonhosted.org/packages/18/8a/0acc6ab53749005802587acee49b658504f9842e9f6230da73422ad90f47/django-celery-3.2.1.tar.gz
+Collecting django-debug-toolbar==1.5
+  Using cached https://files.pythonhosted.org/packages/76/f4/3ceed7d42c4a6bf68199a37940238f1cb6c8be4d65969812264fc07bfaed/django_debug_toolbar-1.5-py2.py3-none-any.whl
+Collecting django-db-logger
+  Using cached https://files.pythonhosted.org/packages/57/6c/531a4c48335355d1947b1fd95ac5c64a4fbc7aa66faf1a89bfdcd17e69f9/django-db-logger-0.1.7.tar.gz
+Collecting django-request-logging==0.4.6
+  Using cached https://files.pythonhosted.org/packages/8f/ac/3b80e8ca55683e573843608fe9f3b2b2f939d9404a6dda1e9a3a6b2dd2d7/django-request-logging-0.4.6.tar.gz
+Collecting celery<4.0,>=3.1.15 (from django-celery==3.2.1)
+  Downloading https://files.pythonhosted.org/packages/b1/27/cd2e097208f60a0512b8b3201f8bd93c1db359c3fa35cab2f405aa1d45a7/celery-3.1.26.post2-py2.py3-none-any.whl (526kB)
+Collecting sqlparse>=0.2.0 (from django-debug-toolbar==1.5)
+  Using cached https://files.pythonhosted.org/packages/ef/53/900f7d2a54557c6a37886585a91336520e5539e3ae2423ff1102daf4f3a7/sqlparse-0.3.0-py2.py3-none-any.whl
+Requirement already satisfied: pytz>dev in /home/aathmsn/anaconda3/lib/python3.6/site-packages (from celery<4.0,>=3.1.15->django-celery==3.2.1) (2019.2)
+Collecting billiard<3.4,>=3.3.0.23 (from celery<4.0,>=3.1.15->django-celery==3.2.1)
+  Downloading https://files.pythonhosted.org/packages/64/a6/d7b6fb7bd0a4680a41f1d4b27061c7b768c673070ba8ac116f865de4e7ca/billiard-3.3.0.23.tar.gz (151kB)
+Collecting kombu<3.1,>=3.0.37 (from celery<4.0,>=3.1.15->django-celery==3.2.1)
+  Downloading https://files.pythonhosted.org/packages/4d/0e/73ac0df8949bdb6ad81812110962b38e6bb4243c3bfdad2d9e90b5509e2e/kombu-3.0.37-py2.py3-none-any.whl (240kB)
+Collecting amqp<2.0,>=1.4.9 (from kombu<3.1,>=3.0.37->celery<4.0,>=3.1.15->django-celery==3.2.1)
+  Downloading https://files.pythonhosted.org/packages/ed/09/314d2788aba0aa91f2578071a6484f87a615172a98c309c2aad3433da90b/amqp-1.4.9-py2.py3-none-any.whl (51kB)
+Collecting anyjson>=0.3.3 (from kombu<3.1,>=3.0.37->celery<4.0,>=3.1.15->django-celery==3.2.1)
+  Downloading https://files.pythonhosted.org/packages/c3/4d/d4089e1a3dd25b46bebdb55a992b0797cff657b4477bc32ce28038fdecbc/anyjson-0.3.3.tar.gz
+Building wheels for collected packages: django-celery, django-db-logger, django-request-logging, billiard, anyjson
+  Building wheel for django-celery (setup.py): started
+  Building wheel for django-celery (setup.py): finished with status 'done'
+  Created wheel for django-celery: filename=django_celery-3.2.1-cp36-none-any.whl size=62997 sha256=971d487486254dfff3e771f69be11c7be2189255a91efe14c162c47d38edb4d3
+  Stored in directory: /home/aathmsn/.cache/pip/wheels/35/8c/46/85313ee018767a8bee0b26d938143a304c141ac6294ad452b8
+  Building wheel for django-db-logger (setup.py): started
+  Building wheel for django-db-logger (setup.py): finished with status 'done'
+  Created wheel for django-db-logger: filename=django_db_logger-0.1.7-cp36-none-any.whl size=7585 sha256=003f6553770f53fd2e9118e2d8eb35b404d4d8b951ab59e3420ae0bbdf8380e0
+  Stored in directory: /home/aathmsn/.cache/pip/wheels/38/b4/4f/5baf99d20175370e990a79bb3f147c4c5ce25cedb3e7369d1b
+  Building wheel for django-request-logging (setup.py): started
+  Building wheel for django-request-logging (setup.py): finished with status 'done'
+  Created wheel for django-request-logging: filename=django_request_logging-0.4.6-cp36-none-any.whl size=2223 sha256=445350d524534b59aa73b6ae3f194542185c7860a891169f0740a8b99a7c26b5
+  Stored in directory: /home/aathmsn/.cache/pip/wheels/a3/b4/54/91792ffce7955cae1344ae42e2e79372c81d9273173ac79ba9
+  Building wheel for billiard (setup.py): started
+  Building wheel for billiard (setup.py): finished with status 'done'
+  Created wheel for billiard: filename=billiard-3.3.0.23-cp36-none-any.whl size=85764 sha256=c4ba646c82cad8e2ec054c961d1399ae8b607912f28febba6836b6b90bd6d518
+  Stored in directory: /home/aathmsn/.cache/pip/wheels/ab/4f/e6/c24fa73a0c43fa43eeaf3bb16b2a9a5ba0f215c5e32088c895
+  Building wheel for anyjson (setup.py): started
+  Building wheel for anyjson (setup.py): finished with status 'done'
+  Created wheel for anyjson: filename=anyjson-0.3.3-cp36-none-any.whl size=4963 sha256=b5c0d887b77ea40ac17493084e4899b6218fb7316203533aeebf45c7250eda0e
+  Stored in directory: /home/aathmsn/.cache/pip/wheels/0a/07/b1/a704fb6e43ef7b61969239c9fce608d52c3cc85d5eb6cd3891
+Successfully built django-celery django-db-logger django-request-logging billiard anyjson
+Installing collected packages: billiard, amqp, anyjson, kombu, celery, django-celery, sqlparse, django-debug-toolbar, django-db-logger, django-request-logging
+Successfully installed amqp-1.4.9 anyjson-0.3.3 billiard-3.3.0.23 celery-3.1.26.post2 django-celery-3.2.1 django-db-logger-0.1.7 django-debug-toolbar-1.5 django-request-logging-0.4.6 kombu-3.0.37 sqlparse-0.3.0
