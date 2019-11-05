@@ -66,7 +66,9 @@ INTERNAL_IPS = ['127.0.0.1']
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/New_York'
+# TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'Asia/Kolkata'
+
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -202,7 +204,8 @@ INSTALLED_APPS = (
 # ==============================================
 
 # Broker URL for RabbitMq
-BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
+# BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
 # Enable finer-grained reporting: will report 'started' when
 # task is executed by a worker.

@@ -111,6 +111,7 @@ public class Main {
 
     // Parse controller configuration file
     String configPath = argsLine.getOptionValue("c");
+//    String configPath="/home/aathmsn/GitProjectsofothers/ottertune/app/client/controller/config/postgres_config.json";
     File configFile = new File(configPath);
 
     // Check config format
@@ -187,7 +188,8 @@ public class Main {
 
       // add a signal handler
       Signal.handle(new Signal("INT"), signal -> keepRunning = false);
-
+//      Thread.sleep(500);
+//      keepRunning=false;
       // record start time
       long startTime = System.currentTimeMillis();
       LOG.info("Starting the experiment ...");

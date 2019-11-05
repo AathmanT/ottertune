@@ -35,10 +35,10 @@ RELOAD_INTERVAL = 10
 # maximum disk usage
 MAX_DISK_USAGE = 90
 # Postgres datadir
-PG_DATADIR = '/var/lib/postgresql/9.6/main'
+PG_DATADIR = '/var/lib/postgresql/10/main'
 
 # Load config
-with open('driver_config.json', 'r') as _f:
+with open('/home/aathmsn/GitProjectsofothers/ottertune/app/client/driver/driver_config.json', 'r') as _f:
     CONF = {k: os.path.expanduser(v) if isinstance(v, str) and v.startswith('~') else v
             for k, v in json.load(_f).items()}
 
@@ -121,7 +121,9 @@ def create_controller_config():
 @task
 def restart_database():
     if CONF['database_type'] == 'postgres':
-        cmd = 'sudo -u postgres pg_ctl -D {} -w restart'.format(PG_DATADIR)
+        # cmd = 'sudo -u postgres pg_ctl -D {} -w restart'.format(PG_DATADIR)
+        cmd = 'sudo -u postgres /usr/lib/postgresql/10/bin/pg_ctl -D {} -w restart'.format(PG_DATADIR)
+
     elif CONF['database_type'] == 'oracle':
         cmd = 'sh oracleScripts/shutdownOracle.sh && sh oracleScripts/startupOracle.sh'
     else:
@@ -132,8 +134,8 @@ def restart_database():
 @task
 def drop_database():
     if CONF['database_type'] == 'postgres':
-        cmd = "PGPASSWORD={} dropdb -e --if-exists {} -U {}".\
-              format(CONF['password'], CONF['database_name'], CONF['username'])
+        cmd = "PGPASSWORD={} dropdb -e --if-exists {} -U {}".format(CONF['password'], CONF['database_name'], CONF['username'])
+        # cmd = "PGPASSWORD={}  dropdb -e --if-exists {} -U {} -p 5432".format(CONF['password'], CONF['database_name'], CONF['username'])
     else:
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
@@ -623,7 +625,7 @@ def run_lhs():
 
 
 @task
-def run_loops(max_iter=1):
+def run_loops(max_iter=20):
     # dump database if it's not done before.
     dump = dump_database()
 
