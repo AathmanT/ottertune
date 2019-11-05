@@ -4,6 +4,8 @@ import logging
 
 from django.db import migrations, ProgrammingError
 
+from website.settings import MYSQL_COMPRESSION
+
 LOG = logging.getLogger(__name__)
 
 TABLES_TO_COMPRESS = [
@@ -45,14 +47,10 @@ def compression_supported(schema_editor):
 
 
 def enable_compression(apps, schema_editor):
-    # try:
     if compression_supported(schema_editor):
         for table in TABLES_TO_COMPRESS:
             schema_editor.execute(ALTER_SQL % (table, 'zlib'))
             schema_editor.execute(OPTIMIZE_SQL % table)
-
-    # except ProgrammingError:
-    #     LOG.warning("Error applying forward migration '0002_enable_compression'... Skipping.")
 
 
 def disable_compression(apps, schema_editor):
@@ -68,10 +66,20 @@ def disable_compression(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
+    atomic = False
+
     dependencies = [
         ('website', '0001_initial'),
     ]
 
-    operations = [migrations.RunPython(enable_compression, disable_compression)]
-
+    if MYSQL_COMPRESSION:
+        operations = [
+            migrations.RunPython(enable_compression,
+                                 disable_compression)
+        ]
+    else:
+        operations = [
+            migrations.RunSQL(migrations.RunSQL.noop,
+                              migrations.RunSQL.noop),
+        ]
 

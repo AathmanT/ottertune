@@ -75,10 +75,9 @@ EXCLUDE_DIRECTORIES = [
 EXCLUDE_FILES = [
     # Django-generated files
     os.path.join(OTTERTUNE_DIR, 'server/website/manage.py'),
+    # file causing import error
+    os.path.join(OTTERTUNE_DIR, 'server/analysis/simulation.py'),
 ]
-
-CHECKSTYLE_JAR_PATH = os.path.join(OTTERTUNE_DIR,
-                                   "client/controller/build/libs/checkstyle-8.8-all.jar")
 
 # Regex patterns
 PYCODESTYLE_COMMENT_PATTERN = re.compile(r'#\s*pycodestyle:\s*disable\s*=\s*[\w\,\s]+$')
@@ -204,15 +203,15 @@ def validate_dir(root_dir):
 def get_git_files(state):
     if state == 'staged':
         # Files staged for commit
-        cmd = r"git diff --name-only --cached --diff-filter=d | grep -E '*\.(py|java)$'"
+        cmd = r"git diff --name-only --cached --diff-filter=d | grep -E '.*\.(py|java)$'"
 
     elif state == 'unstaged':
         # Tracked files not staged for commit
-        cmd = r"git diff --name-only --diff-filter=d | grep -E '*\.(py|java)$'"
+        cmd = r"git diff --name-only --diff-filter=d | grep -E '.*\.(py|java)$'"
 
     elif state == 'untracked':
         # Untracked files not staged for commit
-        cmd = r"git ls-files --other --exclude-standard | grep -E '*\.(py|java)$'"
+        cmd = r"git ls-files --other --exclude-standard | grep -E '.*\.(py|java)$'"
 
     with settings(warn_only=True):
         res = local(cmd, capture=True)
@@ -324,14 +323,9 @@ def check_java_checkstyle(file_path, config_path=None):
     if not file_path.endswith(".java"):
         return True, None
 
-    if not os.path.exists(CHECKSTYLE_JAR_PATH):
-        with lcd(os.path.join(OTTERTUNE_DIR, "client/controller")):  # pylint: disable=not-context-manager
-            local("gradle downloadJars")
-
     options = '' if config_path is None else '-c ' + config_path
     with quiet():
-        res = local("java -jar {} {} {}".format(CHECKSTYLE_JAR_PATH, options, file_path),
-                    capture=True)
+        res = local("checkstyle {} {}".format(options, file_path), capture=True)
     lines = res.stdout.split('\n')
     assert len(lines) >= 2 and lines[0] == "Starting audit..." and lines[-1] == "Audit done."
     if len(lines) == 2:
